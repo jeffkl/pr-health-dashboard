@@ -24,8 +24,9 @@ summary{cursor:pointer;font-weight:600}.note{border-left:4px solid #bf8700;paddi
 </nav>
 <h1>Incoming PR flow and burndown</h1>
 <p class="intro">Track weekly pull request inflow and the merge-or-close rate needed to keep up or reduce the backlog.</p>
-<p>Snapshot <strong>2026-10-19T19:39:24.373Z</strong> ·
-schema <code>snapshot-v2</code> ·
+<p class="snapshot-meta">Snapshot
+<time id="snapshot-time" datetime="2026-10-19T19:39:24.373Z">2026-10-19T19:39:24.373Z</time>
+<span id="snapshot-age"></span> · schema <code>snapshot-v2</code> ·
 score <code>scoring-v1</code></p>
 
 <div class="cards"><div class="card"><div>Repositories</div><div class="big">63</div></div><div class="card"><div>Current ranked backlog</div><div class="big">343</div></div><div class="card"><div>Incoming PRs / week</div><div class="big">21.94</div></div><div class="card"><div>Failed repositories</div><div class="big">0</div></div></div>
@@ -365,4 +366,27 @@ the selected horizon.</p>
     <div><strong>13-week catch-up</strong><div class="big">0</div><small>0.00 exact</small></div><div><strong>26-week catch-up</strong><div class="big">0</div><small>0.00 exact</small></div><div><strong>52-week catch-up</strong><div class="big">0</div><small>0.00 exact</small></div>
   </div><div class="chart"><svg viewBox="0 0 900 240" role="img" aria-label="npm/npm-install-script: incoming pull requests per week"><line x1="42" y1="206" x2="884" y2="206" class="axis"/><line x1="42" y1="18" x2="42" y2="206" class="axis"/><polyline points="42.0,206.0 58.5,206.0 75.0,206.0 91.5,206.0 108.0,206.0 124.5,206.0 141.1,206.0 157.6,206.0 174.1,206.0 190.6,206.0 207.1,206.0 223.6,206.0 240.1,206.0 256.6,206.0 273.1,206.0 289.6,206.0 306.2,206.0 322.7,206.0 339.2,206.0 355.7,206.0 372.2,206.0 388.7,206.0 405.2,206.0 421.7,206.0 438.2,206.0 454.7,206.0 471.3,206.0 487.8,206.0 504.3,206.0 520.8,206.0 537.3,206.0 553.8,206.0 570.3,206.0 586.8,206.0 603.3,206.0 619.8,206.0 636.4,206.0 652.9,206.0 669.4,206.0 685.9,206.0 702.4,206.0 718.9,206.0 735.4,206.0 751.9,206.0 768.4,206.0 784.9,206.0 801.5,206.0 818.0,206.0 834.5,206.0 851.0,206.0 867.5,206.0 884.0,206.0" class="inflow-line"/><text x="34" y="23" text-anchor="end">1</text><text x="34" y="211" text-anchor="end">0</text><text x="42" y="232">2025-10-27</text><text x="884" y="232" text-anchor="end">2026-10-19</text></svg></div></details>
 </section>
+<script>
+const snapshotTime = document.querySelector('#snapshot-time')
+const snapshotAge = document.querySelector('#snapshot-age')
+const timestamp = new Date(snapshotTime.dateTime)
+const duration = (value, unit) => `${value} ${unit}${value === 1 ? '' : 's'}`
+const renderSnapshotTime = () => {
+  snapshotTime.textContent = timestamp.toLocaleString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZoneName: 'short',
+  })
+  const totalMinutes = Math.floor(Math.max(0, Date.now() - timestamp.getTime()) / 60000)
+  const days = Math.floor(totalMinutes / 1440)
+  const hours = Math.floor((totalMinutes % 1440) / 60)
+  const minutes = totalMinutes % 60
+  snapshotAge.textContent = `(${duration(days, 'day')}, ${duration(hours, 'hour')}, ${duration(minutes, 'minute')} old)`
+}
+renderSnapshotTime()
+setInterval(renderSnapshotTime, 60000)
+</script>
 </body></html>

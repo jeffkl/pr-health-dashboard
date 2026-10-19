@@ -24,8 +24,9 @@ summary{cursor:pointer;font-weight:600}.note{border-left:4px solid #bf8700;paddi
 </nav>
 <h1>Pull request priority lanes</h1>
 <p class="intro">Assess which pull requests should receive attention next using the established scoring lenses and lane assignments.</p>
-<p>Snapshot <strong>2026-10-19T19:39:24.373Z</strong> ·
-schema <code>snapshot-v2</code> ·
+<p class="snapshot-meta">Snapshot
+<time id="snapshot-time" datetime="2026-10-19T19:39:24.373Z">2026-10-19T19:39:24.373Z</time>
+<span id="snapshot-age"></span> · schema <code>snapshot-v2</code> ·
 score <code>scoring-v1</code></p>
 
 <div class="cards"><div class="card"><div>Repositories</div><div class="big">63</div></div><div class="card"><div>Open PRs</div><div class="big">463</div></div><div class="card"><div>Ranked PRs</div><div class="big">343</div></div><div class="card"><div>Lane changes</div><div class="big">0</div></div></div>
@@ -94,4 +95,27 @@ maintainer confirmation.</p>
 <tr><td><a href="https://github.com/npm/cli/pull/9866">npm/cli#9866</a></td><td>Fix: Bump node-gyp from 13.0.0 to 13.0.1 to address the vulnerability</td><td>keshav-poojary</td><td><span class="score">56</span></td><td>92</td><td>69d</td><td>medium</td><td>policy:dependency-update, no-closing-issue, merge-conflict</td></tr><tr><td><a href="https://github.com/npm/cli/pull/10028">npm/cli#10028</a></td><td>Rename docs/lib/content/configuring-npm/package-lock-json.md to docs/…</td><td>NickerHurner</td><td><span class="score">34</span></td><td>1</td><td>26d</td><td>medium</td><td>no-closing-issue, low-context-first-contribution, possible-duplicate-or-superseded</td></tr><tr><td><a href="https://github.com/npm/cli/pull/10032">npm/cli#10032</a></td><td>chore: update `create-node-pr` node checkout to actions/checkout@v7</td><td>lazerg</td><td><span class="score">33</span></td><td>10</td><td>25d</td><td>high</td><td>policy:tooling-automation, unresolved-threads:1</td></tr><tr><td><a href="https://github.com/npm/documentation/pull/2048">npm/documentation#2048</a></td><td>chore: move to Node.js&#39;s doc-kit</td><td>avivkeller</td><td><span class="score">22</span></td><td>100</td><td>18d</td><td>low</td><td>policy:tooling-automation, no-closing-issue, merge-conflict</td></tr><tr><td><a href="https://github.com/npm/cli/pull/10105">npm/cli#10105</a></td><td>Add Terraform CI workflow for GitHub Actions</td><td>tt900</td><td><span class="score">19</span></td><td>30</td><td>10d</td><td>medium</td><td>policy:tooling-automation, no-closing-issue</td></tr>
 </tbody></table></div>
 </section>
+<script>
+const snapshotTime = document.querySelector('#snapshot-time')
+const snapshotAge = document.querySelector('#snapshot-age')
+const timestamp = new Date(snapshotTime.dateTime)
+const duration = (value, unit) => `${value} ${unit}${value === 1 ? '' : 's'}`
+const renderSnapshotTime = () => {
+  snapshotTime.textContent = timestamp.toLocaleString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZoneName: 'short',
+  })
+  const totalMinutes = Math.floor(Math.max(0, Date.now() - timestamp.getTime()) / 60000)
+  const days = Math.floor(totalMinutes / 1440)
+  const hours = Math.floor((totalMinutes % 1440) / 60)
+  const minutes = totalMinutes % 60
+  snapshotAge.textContent = `(${duration(days, 'day')}, ${duration(hours, 'hour')}, ${duration(minutes, 'minute')} old)`
+}
+renderSnapshotTime()
+setInterval(renderSnapshotTime, 60000)
+</script>
 </body></html>
