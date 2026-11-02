@@ -241,6 +241,22 @@ section > p:first-of-type { max-width: 72rem; margin-top: .25rem; color: var(--m
   stroke-linecap: square;
   stroke-linejoin: bevel;
 }
+.resolution-line, .net-flow-line { fill: none; stroke-width: 3; stroke-linejoin: round; }
+.resolution-line { stroke: var(--green); stroke-dasharray: 8 4; }
+.net-flow-line { stroke: var(--ink); }
+.inflow-point { fill: var(--npm-red); }
+.resolution-point { fill: var(--green); }
+.net-flow-point { fill: var(--ink); }
+.chart-grid { stroke: var(--line); stroke-width: 1; }
+.zero-line { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 5 5; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; font-size: .85rem; }
+.chart-legend span { display: inline-flex; align-items: center; gap: .5rem; }
+.chart-legend i { width: 1.5rem; border-top: 3px solid var(--npm-red); }
+.chart-legend .resolution-key { border-color: var(--green); border-top-style: dashed; }
+.chart-legend .net-flow-key { border-color: var(--ink); }
+.flow-status strong { color: var(--blue); }
+.flow-status[data-trend="behind"] strong { color: var(--npm-red-dark); }
+.flow-status[data-trend="catching-up"] strong { color: var(--green); }
 .chart text { fill: var(--muted); font-size: 12px; }
 .table-scroll {
   overflow: auto;
