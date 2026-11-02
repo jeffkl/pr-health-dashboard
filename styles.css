@@ -226,37 +226,36 @@ section > p:first-of-type { max-width: 72rem; margin-top: .25rem; color: var(--m
   padding: .75rem .8rem .2rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
-  background:
-    linear-gradient(rgba(37, 37, 37, .055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37, 37, 37, .055) 1px, transparent 1px),
-    #fafaf9;
-  background-size: 40px 40px;
+  background: var(--paper);
 }
 .chart svg { width: 100%; min-width: 680px; height: auto; }
 .axis { stroke: var(--line-strong); stroke-width: 1; }
 .inflow-line {
   fill: none;
   stroke: var(--npm-red);
-  stroke-width: 4;
-  stroke-linecap: square;
-  stroke-linejoin: bevel;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
 }
-.resolution-line, .net-flow-line { fill: none; stroke-width: 3; stroke-linejoin: round; }
-.resolution-line { stroke: var(--green); stroke-dasharray: 8 4; }
-.net-flow-line { stroke: var(--ink); }
+.resolution-line, .net-flow-line {
+  fill: none; stroke-width: 1.5; stroke-linejoin: round; vector-effect: non-scaling-stroke;
+}
+.resolution-line { stroke: var(--ink); stroke-dasharray: 4 3; }
+.net-flow-line { stroke: var(--ink-soft); }
+.chart circle { opacity: 0; }
+.chart circle:hover { opacity: 1; }
 .inflow-point { fill: var(--npm-red); }
-.resolution-point { fill: var(--green); }
-.net-flow-point { fill: var(--ink); }
-.chart-grid { stroke: var(--line); stroke-width: 1; }
+.resolution-point, .net-flow-point { fill: var(--ink); }
+.chart-grid { stroke: var(--line); stroke-width: .5; }
 .zero-line { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 5 5; }
 .chart-legend { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; font-size: .85rem; }
 .chart-legend span { display: inline-flex; align-items: center; gap: .5rem; }
-.chart-legend i { width: 1.5rem; border-top: 3px solid var(--npm-red); }
-.chart-legend .resolution-key { border-color: var(--green); border-top-style: dashed; }
-.chart-legend .net-flow-key { border-color: var(--ink); }
-.flow-status strong { color: var(--blue); }
+.chart-legend i { width: 1.5rem; border-top: 1.5px solid var(--npm-red); }
+.chart-legend .resolution-key { border-color: var(--ink); border-top-style: dashed; }
+.chart-legend .net-flow-key { border-color: var(--ink-soft); }
+.flow-status strong { color: var(--ink); }
 .flow-status[data-trend="behind"] strong { color: var(--npm-red-dark); }
-.flow-status[data-trend="catching-up"] strong { color: var(--green); }
 .chart text { fill: var(--muted); font-size: 12px; }
 .table-scroll {
   overflow: auto;
